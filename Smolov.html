@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Smolov Jr</title>
     <link
@@ -15,72 +16,163 @@
     ></script>
     <script src="switch.js"></script>
     <script>
-      function createRow(day1String, day2String, day3String, day4String) {}
-      function createTable() {}
+      function createRow(
+        weekString,
+        day1String,
+        day2String,
+        day3String,
+        day4String
+      ) {
+        var strings = [
+          weekString,
+          day1String,
+          day2String,
+          day3String,
+          day4String,
+        ];
+        var weekDiv = document.createElement("div");
+        weekDiv.setAttribute("class", "row");
+        var colDiv1 = document.createElement("div");
+        colDiv1.setAttribute("class", "col");
+        colDiv1.innerHTML = weekString;
+        weekDiv.appendChild(colDiv1);
+        var colDiv2 = document.createElement("div");
+        colDiv2.setAttribute("class", "col");
+        colDiv2.innerHTML = day1String;
+        weekDiv.appendChild(colDiv2);
+        var colDiv3 = document.createElement("div");
+        colDiv3.setAttribute("class", "col");
+        colDiv3.innerHTML = day2String;
+        weekDiv.appendChild(colDiv3);
+        var colDiv4 = document.createElement("div");
+        colDiv4.setAttribute("class", "col");
+        colDiv4.innerHTML = day3String;
+        weekDiv.appendChild(colDiv4);
+        var colDiv5 = document.createElement("div");
+        colDiv5.setAttribute("class", "col");
+        colDiv5.innerHTML = day4String;
+        weekDiv.appendChild(colDiv5);
+        return weekDiv;
+      }
+      function transformNumbers(numbers) {
+        var metric = false;
+        if (document.getElementById("metricCheckButton").checked) {
+          metric = true;
+        }
+        for (i in numbers) {
+          if (metric) {
+            numbers[i] = 2.5 * Math.ceil(numbers[i] / 2.5);
+          } else {
+            numbers[i] = 5 * Math.ceil(numbers[i] / 5);
+          }
+        }
+        return numbers;
+      }
+
+      function createTable() {
+        var inputNumber = document.getElementById("inputNumber").value;
+        var incrementNumber = document.getElementById("incrementNumber").value;
+        var numbers = calculateNumbers(inputNumber);
+        var resultDiv = document.getElementById("resultDiv");
+        var unit = "lb";
+        if (document.getElementById("metricCheckButton").checked) {
+          unit = "kg";
+        }
+
+        resultDiv.innerHTML = "";
+        resultDiv.appendChild(
+          createRow(
+            "Week 1",
+            numbers[0] + unit + "<br>6 x 6",
+            numbers[1] + unit + "<br>7 x 5",
+            numbers[2] + unit + "<br>8 x 4",
+            numbers[3] + unit + "<br>10 x 3"
+          )
+        );
+        resultDiv.appendChild(
+          createRow(
+            "Week 2",
+            numbers[0] + 1 * incrementNumber + unit + "<br>6 x 6",
+            numbers[1] + 1 * incrementNumber + unit + "<br>7 x 5",
+            numbers[2] + 1 * incrementNumber + unit + "<br>8 x 4",
+            numbers[3] + 1 * incrementNumber + unit + "<br>10 x 3"
+          )
+        );
+        resultDiv.appendChild(
+          createRow(
+            "Week 3",
+            numbers[0] + 2 * incrementNumber + unit + "<br>6 x 6",
+            numbers[1] + 2 * incrementNumber + unit + "<br>7 x 5",
+            numbers[2] + 2 * incrementNumber + unit + "<br>8 x 4",
+            numbers[3] + 2 * incrementNumber + unit + "<br>10 x 3"
+          )
+        );
+      }
       function calculateNumbers(inputNumber) {
         var numbers = [];
         numbers.push(inputNumber * 0.7);
         numbers.push(inputNumber * 0.75);
         numbers.push(inputNumber * 0.8);
         numbers.push(inputNumber * 0.85);
+        numbers = transformNumbers(numbers);
         return numbers;
       }
     </script>
   </head>
-  <body onload="createTable();" class="bg-dark text-light text-center">
+
+  <body onload="createTable();" class="bg-dark text-light">
     <header>
-        <header class="">
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-text">
-              <div class="container-fluid text-sm-start">
-                <a class="navbar-brand" href="#">Navigation</a>
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-text">
+        <div class="container-fluid text-sm-start">
+          <a class="navbar-brand" href="#">Navigation</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://pumicestone376.github.io/index.html"
+                  >Home</a
                 >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="https://pumicestone376.github.io/index.html"
-                        >Home</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="https://pumicestone376.github.io/Prilepin.html"
-                        >Prilepin's Chart</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="https://pumicestone376.github.io/RussianSquatRoutine.html"
-                        >Russian Squat Routine</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                        <a
-                          class="nav-link disabled"
-                          href="https://pumicestone376.github.io/Smolov.html"
-                          >Smolov Jr</a
-                        >
-                      </li>
-                  </ul>
-                </div>
-              </div>
-            </nav>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://pumicestone376.github.io/Prilepin.html"
+                  >Prilepin's Chart</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://pumicestone376.github.io/RussianSquatRoutine.html"
+                  >Russian Squat Routine</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link disabled"
+                  href="https://pumicestone376.github.io/Smolov.html"
+                  >Smolov Jr</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-    <div class="container-fluid">
-    <div id="inputDiv" class="container">
+    <div class="container-fluid text-center">
+      <div id="inputDiv" class="container">
         <label for="inputNumber">Enter 1 rep max</label>
         <input
           type="number"
@@ -88,18 +180,30 @@
           value="100"
           onchange="createTable();"
         />
-        <label for="inputNumber">Weekly increment</label>
+        <br /><label for="incrementNumber">Weekly increment</label>
         <input
           type="number"
-          id="inputNumber"
+          id="incrementNumber"
           value="5"
           onchange="createTable();"
         />
-        </div>
-        <div id="resultDiv">
-            Error: Script failure
-        </div>
+      </div>
     </div>
-
+    <div class="container">
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="metricCheckButton"
+          value="metricCheck"
+          onchange="createTable();"
+        />
+        <label class="form-check-label" for="metricCheckButton">KG</label>
+      </div>
+      <div id="resultDiv"></div>
+    </div>
+    <div class="caption-top text-center">
+      <br />Note: all workouts are listed as sets x reps.
+    </div>
   </body>
 </html>
