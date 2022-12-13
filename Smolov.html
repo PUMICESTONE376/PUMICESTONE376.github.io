@@ -55,9 +55,9 @@
         return weekDiv;
       }
       function transformNumbers(numbers) {
-        var metric = false;
-        if (document.getElementById("metricCheckButton").checked) {
-          metric = true;
+        var metric = true;
+        if (document.getElementById("metricCheckButton").unchecked) {
+          metric = false;
         }
         for (i in numbers) {
           if (metric) {
@@ -197,6 +197,7 @@
           id="metricCheckButton"
           value="metricCheck"
           onchange="createTable();"
+          checked
         />
         <label class="form-check-label" for="metricCheckButton">KG</label>
       </div>
