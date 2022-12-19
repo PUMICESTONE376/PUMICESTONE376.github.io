@@ -23,65 +23,61 @@
         day3String,
         day4String
       ) {
-        var strings = [
+        let strings = [
           weekString,
           day1String,
           day2String,
           day3String,
           day4String,
         ];
-        var weekDiv = document.createElement("div");
+        let weekDiv = document.createElement("div");
         weekDiv.setAttribute("class", "row");
-        var colDiv1 = document.createElement("div");
+        let colDiv1 = document.createElement("div");
         colDiv1.setAttribute("class", "col");
         colDiv1.innerHTML = weekString;
         weekDiv.appendChild(colDiv1);
-        var colDiv2 = document.createElement("div");
+        let colDiv2 = document.createElement("div");
         colDiv2.setAttribute("class", "col");
         colDiv2.innerHTML = day1String;
         weekDiv.appendChild(colDiv2);
-        var colDiv3 = document.createElement("div");
+        let colDiv3 = document.createElement("div");
         colDiv3.setAttribute("class", "col");
         colDiv3.innerHTML = day2String;
         weekDiv.appendChild(colDiv3);
-        var colDiv4 = document.createElement("div");
+        let colDiv4 = document.createElement("div");
         colDiv4.setAttribute("class", "col");
         colDiv4.innerHTML = day3String;
         weekDiv.appendChild(colDiv4);
-        var colDiv5 = document.createElement("div");
+        let colDiv5 = document.createElement("div");
         colDiv5.setAttribute("class", "col");
         colDiv5.innerHTML = day4String;
         weekDiv.appendChild(colDiv5);
         return weekDiv;
       }
       function transformNumbers(numbers) {
-        var metric = true;
-        if (document.getElementById("metricCheckButton").checked == false) {
-          metric = false;
-        }
+        let metric = document.getElementById("metricCheckButton").checked
+          ? true
+          : false;
         for (i in numbers) {
-          if (metric || document.getElementById("inputNumber").value < 80) {
-            numbers[i] = 2.5 * Math.ceil(numbers[i] / 2.5);
-          } else {
-            numbers[i] = 5 * Math.ceil(numbers[i] / 5);
-          }
+          metric || document.getElementById("inputNumber").value < 80
+            ? (numbers[i] = 2.5 * Math.ceil(numbers[i] / 2.5))
+            : (numbers[i] = 5 * Math.ceil(numbers[i] / 5));
         }
         return numbers;
       }
 
       function createTable() {
-        var inputNumber = Math.abs(
+        let inputNumber = Math.abs(
           document.getElementById("inputNumber").value
         );
-        var incrementNumber = Math.abs(
+        let incrementNumber = Math.abs(
           document.getElementById("incrementNumber").value
         );
-        var numbers = calculateNumbers(inputNumber);
-        var resultDiv = document.getElementById("resultDiv");
-        var unit = "lb";
-        if (document.getElementById("metricCheckButton").checked) {
-          unit = "kg";
-        }
+        let numbers = calculateNumbers(inputNumber);
+        let resultDiv = document.getElementById("resultDiv");
+        let unit = document.getElementById("metricCheckButton").checked
+          ? "kg"
+          : "lb";
 
         resultDiv.innerHTML = "";
         resultDiv.appendChild(
@@ -113,13 +109,13 @@
         );
       }
       function calculateNumbers(inputNumber) {
-        var numbers = [];
+        if (inputNumber == null) return;
+        let numbers = [];
         numbers.push(inputNumber * 0.7);
         numbers.push(inputNumber * 0.75);
         numbers.push(inputNumber * 0.8);
         numbers.push(inputNumber * 0.85);
-        numbers = transformNumbers(numbers);
-        return numbers;
+        return transformNumbers(numbers);
       }
     </script>
   </head>
