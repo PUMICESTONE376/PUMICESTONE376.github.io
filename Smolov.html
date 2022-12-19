@@ -56,11 +56,11 @@
       }
       function transformNumbers(numbers) {
         var metric = true;
-        if (document.getElementById("metricCheckButton").unchecked) {
+        if (document.getElementById("metricCheckButton").checked == false) {
           metric = false;
         }
         for (i in numbers) {
-          if (metric) {
+          if (metric || document.getElementById("inputNumber").value < 80) {
             numbers[i] = 2.5 * Math.ceil(numbers[i] / 2.5);
           } else {
             numbers[i] = 5 * Math.ceil(numbers[i] / 5);
@@ -234,8 +234,10 @@
       </div>
       <div id="resultDiv"></div>
     </div>
-    <div class="caption-top text-center">
-      <br />Note: all workouts are listed as sets x reps.
+    <div class="caption-top text-center" id="warningDiv">
+      <br />Note: all workouts are listed as sets x reps. <br />
+      Kg results are rounded to 2.5 <br />Lb are rounded to 5 unless 1rm is
+      below 80, then they are also rounded to 2.5
     </div>
   </body>
 </html>
