@@ -16,6 +16,26 @@
     ></script>
     <script src="switch.js"></script>
     <script>
+      function calculatePercentages(oneRepMax) {
+        let percentagesDiv = document.getElementById("percentagesDiv");
+        percentagesDiv.innerHTML = "";
+        if (oneRepMax == 0 || oneRepMax == null) return;
+        for (let i = 50; i < 100; i += 10) {
+          percentagesDiv.innerHTML += '<div class="row">';
+          percentagesDiv.innerHTML += `${i}%: ${Math.round(
+            (oneRepMax * i) / 100
+          )}`;
+          percentagesDiv.innerHTML += "</div>";
+          percentagesDiv.innerHTML += '<div class="row">';
+          percentagesDiv.innerHTML += `${i + 5}%: ${Math.round(
+            (oneRepMax * (i + 5)) / 100
+          )}`;
+          percentagesDiv.innerHTML += "</div>";
+        }
+        percentagesDiv.innerHTML += '<div class="row">';
+        percentagesDiv.innerHTML += `100%: ${oneRepMax}`;
+        percentagesDiv.innerHTML += "</div>";
+      }
       function calculateMax() {
         var resultDiv = document.getElementById("resultDiv");
         resultDiv.innerHTML = "";
@@ -24,23 +44,20 @@
         let reps = document.getElementById("repsInput").value;
         weight = Math.abs(weight);
         reps = Math.abs(reps);
+
         if (reps == 1) {
           max = weight;
-          resultDiv.innerHTML = "Predicted 1rm: " + max;
-          return;
+          resultDiv.innerHTML = `Predicted 1rm: ${max}`;
         } else if (reps >= 13) {
           max = (weight * reps) / 30 + weight;
           max = Math.round(max);
-          resultDiv.innerHTML =
-            "Predicted 1rm: " +
-            max +
-            "<br/>Warning: Calculation may be inaccurate at high reps";
-          return;
+          resultDiv.innerHTML = `Predicted 1rm: ${max} <br/>Warning: Calculation may be inaccurate at high reps`;
         } else if (reps > 1 && reps < 13) {
           max = (weight * reps) / 30 + weight;
           max = Math.round(max);
-          resultDiv.innerHTML = "Predicted 1rm: " + max;
+          resultDiv.innerHTML = `Predicted 1rm: ${max}`;
         }
+        calculatePercentages(max);
       }
     </script>
   </head>
@@ -138,5 +155,6 @@
       </div>
     </div>
     <div id="resultDiv" class="container-fluid text-center"></div>
+    <div id="percentagesDiv" class="container-fluid text-center"></div>
   </body>
 </html>
