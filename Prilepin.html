@@ -27,13 +27,14 @@
         cell2String,
         cell3String,
         cell4String,
-        cell5String
+        cell5String,
+        percentageString = ""
       ) {
         var row = document.createElement("tr");
         var cell1 = document.createElement("td");
         row.setAttribute("class", "active");
         cell1.innerHTML = cell1String;
-
+        cell1.innerHTML += "<br />" + percentageString;
         cell1.setAttribute(
           "class",
           "text-nowrap table-bordered border-secondary"
@@ -96,7 +97,8 @@
             "3-6",
             "24",
             "18-30",
-            workoutString
+            workoutString,
+            "(55% - 65%)"
           )
         );
         if (olympicLift) {
@@ -110,7 +112,8 @@
             "3-6",
             "18",
             "12-24",
-            workoutString
+            workoutString,
+            "(70% - 80%)"
           )
         );
         if (olympicLift) {
@@ -124,7 +127,8 @@
             "2-4",
             "15",
             "10-20",
-            workoutString
+            workoutString,
+            "(80% - 90%)"
           )
         );
         if (olympicLift) {
@@ -138,7 +142,8 @@
             "1-2",
             "7",
             "4-10",
-            workoutString
+            workoutString,
+            "(90% - 100%)"
           )
         );
         resultDiv.appendChild(table);
@@ -236,7 +241,7 @@
           >Olympic Lift? (Fewer reps per set)</label
         >
       </div>
-      <div class="container">
+      <div class="container" style="padding-left: 0">
         The following table is based on
         <a
           href="https://www.elitefts.com/education/training/sports-performance/prilepins-chart/"
@@ -245,6 +250,7 @@
         >
         including example sessions.
       </div>
+      <br />
     </div>
     <div id="resultDiv" class="container bg-dark"></div>
   </body>
