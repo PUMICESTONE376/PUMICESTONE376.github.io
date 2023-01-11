@@ -17,6 +17,7 @@
     <script>
       function calculatePercentages(oneRepMax) {
         let percentagesDiv = document.getElementById("percentagesDiv");
+        let guidelineList = document.getElementById("guidelineList");
         percentagesDiv.innerHTML = "";
         if (oneRepMax == 0 || oneRepMax == null) return;
         for (let i = 50; i < 100; i += 10) {
@@ -34,6 +35,26 @@
         percentagesDiv.innerHTML += '<div class="row">';
         percentagesDiv.innerHTML += `100%: ${oneRepMax}`;
         percentagesDiv.innerHTML += "</div>";
+
+        guidelineList.innerHTML = "";
+        guidelineList.innerHTML += `<li> 65%: 6 reps at  <b> ${
+          2.5 * Math.ceil((oneRepMax * 0.65) / 2.5)
+        }</b> </li>`;
+        guidelineList.innerHTML += `<li> 70% 5 reps at <b> ${
+          2.5 * Math.ceil((oneRepMax * 0.7) / 2.5)
+        }</b> </li>`;
+        guidelineList.innerHTML += `<li> 75% 4 reps at <b> ${
+          2.5 * Math.ceil((oneRepMax * 0.75) / 2.5)
+        }</b> </li>`;
+        guidelineList.innerHTML += `<li> 80% 3 reps at <b> ${
+          2.5 * Math.ceil((oneRepMax * 0.8) / 2.5)
+        }</b> </li>`;
+        guidelineList.innerHTML += `<li> 85% 3 reps at <b> ${
+          2.5 * Math.ceil((oneRepMax * 0.85) / 2.5)
+        }</b> </li>`;
+        guidelineList.innerHTML += `<li> 90% 2 reps at <b> ${
+          2.5 * Math.ceil((oneRepMax * 0.9) / 2.5)
+        } </b> </li>`;
       }
       function calculateMax() {
         var resultDiv = document.getElementById("resultDiv");
@@ -46,15 +67,15 @@
 
         if (reps == 1) {
           max = weight;
-          resultDiv.innerHTML = `Predicted 1rm: ${max}`;
+          resultDiv.innerHTML = `<h5> Predicted 1rm: ${max} </h5>`;
         } else if (reps >= 13) {
           max = (weight * reps) / 30 + weight;
           max = Math.round(max);
-          resultDiv.innerHTML = `Predicted 1rm: ${max} <br/>Warning: Calculation may be inaccurate at high reps`;
+          resultDiv.innerHTML = `<h5> Predicted 1rm: ${max} </h5> <br/>Warning: Calculation may be inaccurate at high reps`;
         } else if (reps > 1 && reps < 13) {
           max = (weight * reps) / 30 + weight;
           max = Math.round(max);
-          resultDiv.innerHTML = `Predicted 1rm: ${max}`;
+          resultDiv.innerHTML = `<h5> Predicted 1rm: ${max} </h5>`;
         }
         calculatePercentages(max);
       }
@@ -153,18 +174,19 @@
         </div>
       </div>
     </div>
+    <br />
     <div id="resultDiv" class="container-fluid text-center"></div>
     <div id="percentagesDiv" class="container-fluid text-center"></div>
     <div id="guidelineDiv" class="container-fluid text-center">
       <br />
       <h5>Guideline reps at a given percentage</h5>
-      <ul style="list-style: none; padding-left: 0">
-        <li>65% 6 reps</li>
-        <li>70% 5 reps</li>
-        <li>75% 4 reps</li>
-        <li>80% 3 reps</li>
-        <li>85% 3 reps</li>
-        <li>90% 2 reps</li>
+      <ul id="guidelineList" style="list-style: none; padding-left: 0">
+        <li>65% 6 rep at</li>
+        <li>70% 5 rep at</li>
+        <li>75% 4 rep at</li>
+        <li>80% 3 rep at</li>
+        <li>85% 3 rep at</li>
+        <li>90% 2 rep at</li>
       </ul>
       6 sets of any of these is a reasonable training session, adjust the number
       of sets for desired difficulty
