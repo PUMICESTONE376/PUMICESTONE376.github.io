@@ -37,23 +37,27 @@
         percentagesDiv.innerHTML += "</div>";
 
         guidelineList.innerHTML = "";
+        let roundNumber = 2.5;
+        if (oneRepMax < 50) {
+          roundNumber = 1;
+        }
         guidelineList.innerHTML += `<li> 65%: 6 reps at  <b> ${
-          2.5 * Math.ceil((oneRepMax * 0.65) / 2.5)
+          roundNumber * Math.ceil((oneRepMax * 0.65) / roundNumber)
         }</b> </li>`;
         guidelineList.innerHTML += `<li> 70% 5 reps at <b> ${
-          2.5 * Math.ceil((oneRepMax * 0.7) / 2.5)
+          roundNumber * Math.ceil((oneRepMax * 0.7) / roundNumber)
         }</b> </li>`;
         guidelineList.innerHTML += `<li> 75% 4 reps at <b> ${
-          2.5 * Math.ceil((oneRepMax * 0.75) / 2.5)
+          roundNumber * Math.ceil((oneRepMax * 0.75) / roundNumber)
         }</b> </li>`;
         guidelineList.innerHTML += `<li> 80% 3 reps at <b> ${
-          2.5 * Math.ceil((oneRepMax * 0.8) / 2.5)
+          roundNumber * Math.ceil((oneRepMax * 0.8) / roundNumber)
         }</b> </li>`;
         guidelineList.innerHTML += `<li> 85% 3 reps at <b> ${
-          2.5 * Math.ceil((oneRepMax * 0.85) / 2.5)
+          roundNumber * Math.ceil((oneRepMax * 0.85) / roundNumber)
         }</b> </li>`;
         guidelineList.innerHTML += `<li> 90% 2 reps at <b> ${
-          2.5 * Math.ceil((oneRepMax * 0.9) / 2.5)
+          roundNumber * Math.ceil((oneRepMax * 0.9) / roundNumber)
         } </b> </li>`;
       }
       function calculateMax() {
