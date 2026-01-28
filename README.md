@@ -1,5 +1,5 @@
 # PUMICESTONE376.github.io
-My approach is to build things that I'm actually interested in using and gradually learn by doing. <br />
+Some calculators for powerlifting and weightlifting: <br />
 https://pumicestone376.github.io/index.html <br />
 https://pumicestone376.github.io/Prilepin.html <br />
 https://pumicestone376.github.io/RussianSquatRoutine.html <br />
